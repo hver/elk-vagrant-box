@@ -22,7 +22,7 @@ tar xzf kibana-*.tar.gz -C /vagrant/kibana --strip 1
 # install logstash
 [ -f logstash_1.4.2-1-2c0f5a1_all.deb ] || wget -q https://download.elasticsearch.org/logstash/logstash/packages/debian/logstash_1.4.2-1-2c0f5a1_all.deb
 sudo dpkg -i logstash*.deb
-sudo cp /vagrant/logstash.conf /etc/logstash/conf.d/logstash.conf
+sudo cp /vagrant/provision/logstash.conf /etc/logstash/conf.d/logstash.conf
 sudo service logstash restart
 
 # configure apache
