@@ -1,1 +1,4 @@
 .vagrant
+/vendor
+composer.phar
+/kibana
