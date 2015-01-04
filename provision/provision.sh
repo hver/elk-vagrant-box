@@ -16,7 +16,7 @@ sudo service elasticsearch restart
 
 # install kibana
 [ -f kibana-3.1.2.tar.gz ] || wget -q https://download.elasticsearch.org/kibana/kibana/kibana-3.1.2.tar.gz
-mkdir /vagrant/kibana
+mkdir -p /vagrant/kibana
 tar xzf kibana-*.tar.gz -C /vagrant/kibana --strip 1
 
 # install logstash
