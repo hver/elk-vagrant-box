@@ -11,9 +11,13 @@ $fileHandler->setFormatter($formatter);
 
 
 
-$log = new Logger('LogstashLogger');
+$log = new Logger('Logger.Example');
+
+$webProcessor  = new \Monolog\Processor\WebProcessor();
+$webProcessor->addExtraField('user_agent', 'HTTP_USER_AGENT');
+
 $log->pushHandler($fileHandler);
-$log->pushProcessor(new \Monolog\Processor\WebProcessor());
+$log->pushProcessor($webProcessor);
 $log->pushProcessor(new \Monolog\Processor\IntrospectionProcessor());
 
 $log->warning('Suspicious input');
