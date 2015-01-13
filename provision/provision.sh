@@ -28,3 +28,7 @@ sudo service logstash restart
 # configure apache
 sudo cp /vagrant/provision/apache_vhost.conf /etc/apache2/sites-available/000-default.conf
 sudo service apache2 restart
+
+# composer
+cd /vagrant
+curl -sS https://getcomposer.org/installer | php
