@@ -12,6 +12,7 @@ sudo apt-get install openjdk-7-jre-headless php5 -y
 sudo dpkg -i elasticsearch*.deb
 sudo update-rc.d elasticsearch defaults 95 10
 echo "http.cors.enabled: true" | sudo tee -a  /etc/elasticsearch/elasticsearch.yml
+sudo /usr/share/elasticsearch/bin/plugin -install mobz/elasticsearch-head
 sudo service elasticsearch restart
 
 # install kibana
