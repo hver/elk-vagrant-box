@@ -1,9 +1,7 @@
 <?php
-require '../vendor/autoload.php';
+require __DIR__ . '/../vendor/autoload.php';
 
 use Monolog\Formatter\LineFormatter;
-use Monolog\Formatter\LogstashFormatter;
-use Monolog\Formatter\NormalizerFormatter;
 use Monolog\Handler\StreamHandler;
 use Monolog\Logger;
 
