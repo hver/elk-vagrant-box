@@ -5,7 +5,7 @@ use Monolog\Handler\StreamHandler;
 use Monolog\Logger;
 
 // Create new logging channel
-$log = new Logger('Logger.example');
+$log = new Logger('Logger.Example');
 
 // Create a handler which writes in the console.
 // This handler only log messages with importance levels higher than Logger::WARNING
