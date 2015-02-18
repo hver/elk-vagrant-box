@@ -62,7 +62,7 @@
         "0": {
           "type": "time",
           "field": "@timestamp",
-          "from": "now-1h",
+          "from": "now-24h",
           "to": "now",
           "mandate": "must",
           "active": true,
@@ -121,7 +121,7 @@
           },
           "auto_int": true,
           "resolution": 100,
-          "interval": "30s",
+          "interval": "10m",
           "intervals": [
             "auto",
             "1s",
@@ -168,7 +168,7 @@
           "mode": "count",
           "time_field": "@timestamp",
           "value_field": null,
-          "interval": "5m",
+          "interval": "3h",
           "spyable": true,
           "queries": {
             "mode": "all",
@@ -366,8 +366,8 @@
           "overflow": "min-height",
           "fields": [
             "@timestamp",
-            "message",
             "ip",
+            "message",
             "geoip.country_name",
             "ua.name",
             "url"
