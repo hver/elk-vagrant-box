@@ -7,8 +7,11 @@ use Monolog\Logger;
 // Create new logging channel
 $log = new Logger('Logger.Example');
 
-// Create a handler which writes in the console.
-// This handler only log messages with importance levels higher than Logger::WARNING
+// To output in the console we use a handler which writes to stream.
+// And as a stream address we use "php://stdout". In a CLI php application,
+// everything written to this stream is printed in the console.
+
+// This handler only log messages with importance levels higher than Logger::NOTICE
 $cliHandler = new StreamHandler("php://stdout", Logger::NOTICE);
 
 // Add the console handler to logger
