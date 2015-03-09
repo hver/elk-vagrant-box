@@ -5,24 +5,27 @@ set -u
 
 # install packages
 sudo apt-get update
-sudo apt-get install openjdk-7-jre-headless php5 -y
+sudo apt-get install openjdk-7-jre-headless php5 supervisor -y
 
 # install elasticsearch
-[ -f elasticsearch-1.4.2.deb ] || wget -q https://download.elasticsearch.org/elasticsearch/elasticsearch/elasticsearch-1.4.2.deb
-sudo dpkg -i elasticsearch*.deb
+wget https://download.elasticsearch.org/elasticsearch/elasticsearch/elasticsearch-1.4.4.deb -O elastcsearch.deb
+sudo dpkg -i elastcsearch.deb
 sudo update-rc.d elasticsearch defaults 95 10
 echo "http.cors.enabled: true" | sudo tee -a  /etc/elasticsearch/elasticsearch.yml
-sudo /usr/share/elasticsearch/bin/plugin -install mobz/elasticsearch-head
+[ -d /usr/share/elasticsearch/plugins/head ] || sudo /usr/share/elasticsearch/bin/plugin -install mobz/elasticsearch-head
 sudo service elasticsearch restart
 
 # install kibana
-[ -f kibana-3.1.2.tar.gz ] || wget -q https://download.elasticsearch.org/kibana/kibana/kibana-3.1.2.tar.gz
-mkdir -p /vagrant/kibana
-tar xzf kibana-*.tar.gz -C /vagrant/kibana --strip 1
+wget https://download.elasticsearch.org/kibana/kibana/kibana-4.0.1-linux-x64.tar.gz -O kibana.tar.gz
+sudo mkdir -p /opt/kibana
+sudo mkdir -p /var/log/kibana
+sudo tar xzf kibana.tar.gz -C /opt/kibana --strip 1
+sudo cp /vagrant/provision/supervisor.conf /etc/supervisor/conf.d/supervisor.conf
+sudo service supervisor restart
 
 # install logstash
-[ -f logstash_1.4.2-1-2c0f5a1_all.deb ] || wget -q https://download.elasticsearch.org/logstash/logstash/packages/debian/logstash_1.4.2-1-2c0f5a1_all.deb
-sudo dpkg -i logstash*.deb
+wget https://download.elasticsearch.org/logstash/logstash/packages/debian/logstash_1.4.2-1-2c0f5a1_all.deb -O logstash.deb
+sudo dpkg -i logstash.deb
 sudo cp /vagrant/provision/logstash.conf /etc/logstash/conf.d/logstash.conf
 sudo service logstash restart
 
@@ -33,3 +36,6 @@ sudo service apache2 restart
 # composer
 cd /vagrant
 curl -sS https://getcomposer.org/installer | php
+
+# Sample log message. It helps to configure an index pattern on Kibana init
+php /vagrant/examples/logstash_example.php

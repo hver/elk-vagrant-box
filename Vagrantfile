@@ -4,13 +4,19 @@
 VAGRANTFILE_API_VERSION = "2"
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
-  config.vm.box = "box-cutter/ubuntu1404"
+  config.vm.box = "boxcutter/ubuntu1404"
 
   # Elastic search port, it needs to be open, because default Kibana looks for elasticsearch at localhost:9200
   config.vm.network "forwarded_port", guest: 9200, host: 9200
 
+  # Kibana
+  config.vm.network "forwarded_port", guest: 5601, host: 5601
+
   # Apache
   config.vm.network "forwarded_port", guest: 80, host: 9201
+
+  # Supervisor
+  config.vm.network "forwarded_port", guest: 9001, host: 9001
 
 
   # Create a private network, which allows host-only access to the machine using a specific IP.

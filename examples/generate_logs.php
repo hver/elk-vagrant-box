@@ -47,8 +47,8 @@ for ($i = 0; $i < 40; $i++) {
     $log->$levelIso($logMessage);
 }
 
-echo 'Log messages generated.
- Please wait a minute for ELK stack to process them (Vagrant makes it slow). ';
+echo "Log messages generated.\n
+Please wait a minute for ELK stack to process them (Vagrant shared folders make it very slow) \n";
 
 /**
  * @return string
